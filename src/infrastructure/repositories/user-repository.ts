@@ -1,14 +1,20 @@
 import { CreateUserDto, UpdateUserDto } from "../../domain/dtos/user.dto";
 import { UserEntity } from "../../domain/entities/user-entity";
+import { Database } from "../config/database";
 
 export class UserRepository {
     private users: UserEntity[] = [];
 
+    constructor(private client: Database){}
+
     create(user: CreateUserDto) {
+        //this.client.query(``)
         const newUser = {
             ...user,
             id: 1
         }
+        
+        console.log("USer",Object.values(user))
         this.users.push(newUser)
         return newUser
     }

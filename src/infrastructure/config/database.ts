@@ -5,24 +5,27 @@ export class Database {
 
     private static instance: Database | null = null
     private client: Client | null
+    private config:ClientConfigDto
 
-    constructor() {
+    private constructor(config:ClientConfigDto) {
         this.client = null
+        this.config = config
     }
 
-    static getInstance(): Database {
+    static getInstance(config:ClientConfigDto): Database {
 
         if (!Database.instance) {
-            Database.instance = new Database()
+            Database.instance = new Database(config)
         }
 
         return Database.instance
     }
 
-    async connect(config: ClientConfigDto) {
+    async connect() {
 
         try {
-            this.client = new Client(config)
+
+            this.client = new Client(this.config)
 
             await this.client.connect()
 

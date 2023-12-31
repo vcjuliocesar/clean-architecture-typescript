@@ -30,12 +30,12 @@ async function tableExists(client: Database, tableName: string): Promise<boolean
 
 export async function createDataBase() {
 
-    const client = Database.getInstance()
+    const client = Database.getInstance(config)
 
     const dbName = ClientConfig.database
 
     try {
-        await client.connect(config)
+        await client.connect()
 
         const dbExists = await databaseExists(client, dbName)
 
@@ -54,11 +54,11 @@ export async function createDataBase() {
 
 export async function createTables() {
 
-    const client = Database.getInstance()
+    const client = Database.getInstance(ClientConfig)
 
     try {
 
-        await client.connect(ClientConfig)
+        await client.connect()
         
         const tablesToCreate = [
             {

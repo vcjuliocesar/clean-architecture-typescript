@@ -7,3 +7,5 @@ export const init = () => {
             console.error('Error durante la inicialización:', error)
         })
 }
+
+init()

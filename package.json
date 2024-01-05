@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsc --watch",
-    "test": "jest"
+    "test": "jest --coverage --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -29,13 +29,16 @@
       "json"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
+      "^.+\\.(ts|tsx)$": [
+        "ts-jest",{
+          "tsconfig": "tsconfig.json"
+        }
+      ]
     },
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.json"
-      }
-    }
+    "testMatch":[
+      "**/__tests__/**/*.+(ts)",
+      "**/?(*.)+(spec|test).+(ts)"
+    ]
   },
   "dependencies": {
     "dotenv": "^16.3.1",
